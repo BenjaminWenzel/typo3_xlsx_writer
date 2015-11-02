@@ -36,16 +36,22 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class ExcelDocument {
 
 	/**
+	 * Author
+	 *
 	 * @var string
 	 */
 	protected $author = "Doc Author";
 
 	/**
+	 * Worksheets
+	 *
 	 * @var \BW\XlsxWriter\ExcelSheet[]
 	 */
 	protected $sheets = array();
 
 	/**
+	 * Temporary files
+	 *
 	 * @var array
 	 */
 	protected $tempFiles = array();

@@ -80,8 +80,8 @@ class ExcelSheet {
 	 * ExcelSheet constructor.
 	 *
 	 * @param \BW\XlsxWriter\ExcelDocument $doc
-	 * @param string                                   $sheetName
-	 * @param int                                      $sheetCount
+	 * @param string                       $sheetName
+	 * @param int                          $sheetCount
 	 */
 	public function __construct( $doc, $sheetName, $sheetCount ) {
 		$this->doc = $doc;
