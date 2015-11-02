@@ -67,6 +67,11 @@ class ExcelSheet {
 	protected $sheetData = "";
 
 	/**
+	 * @var array
+	 */
+	protected $columnWidths = array();
+
+	/**
 	 * @var \BW\XlsxWriter\ExcelDocument
 	 */
 	protected $doc = NULL;
@@ -164,6 +169,13 @@ class ExcelSheet {
 	}
 
 	/**
+	 * @param $columnWidths
+	 */
+	public function setColumnWidths( $columnWidths ) {
+		$this->columnWidths = $columnWidths;
+	}
+
+	/**
 	 * Returns content of sheet xml file
 	 *
 	 * @return string
@@ -186,6 +198,19 @@ class ExcelSheet {
 		$xml .= "</sheetView>";
 		$xml .= "</sheetViews>";
 		$xml .= "<sheetFormatPr baseColWidth=\"10\" defaultRowHeight=\"15\" x14ac:dyDescent=\"0.25\"/>";
+
+		if( !empty( $this->columnWidths ) ) {
+			$xml .= "<cols>";
+			/**
+			 * @var int   $i
+			 * @var float $width
+			 */
+			foreach( $this->columnWidths as $i => $width ) {
+				$xml .= "<col min=\"" . ( $i + 1 ) . "\" max=\"" . ( $i + 1 ) . "\" width=\"" . $width . "\" bestFit=\"1\" customWidth=\"1\"/>";
+			}
+			$xml .= "</cols>";
+		}
+
 		$xml .= "<sheetData>";
 		$xml .= $this->sheetData;
 		$xml .= "</sheetData>";

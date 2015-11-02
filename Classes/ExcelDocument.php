@@ -150,14 +150,20 @@ class ExcelDocument {
 	/**
 	 * @param array  $data
 	 * @param string $sheetName
+	 * @param array  $columnWidths
 	 * @param array  $headerTypes
 	 */
-	public function writeSheet( $data, $sheetName, $headerTypes = array() ) {
+	public function writeSheet( $data, $sheetName, $columnWidths = array(), $headerTypes = array() ) {
 		$sheetName = empty( $sheetName ) ? "Sheet1" : $sheetName;
 		/** @var \BW\XlsxWriter\ExcelSheet $sheet */
 		$sheet = $this->initializeSheet( $sheetName );
 
 		$data = empty( $data ) ? array( array( "" ) ) : $data;
+
+		if( !empty( $columnWidths ) ) {
+			$sheet->setColumnWidths( $columnWidths );
+		}
+
 		if( !empty( $headerTypes ) ) {
 			//$this->writeSheetHeader($sheet_name, $header_types);
 		}
